@@ -3,6 +3,8 @@ name: PKG
 on:
   schedule:
     - cron: '30 16 * * *' # 4:30pm every day
+  push:
+    branches: [ ci-tmp-pkg ]
 
 env:
   CARGO_TERM_COLOR: always
