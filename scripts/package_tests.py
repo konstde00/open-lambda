@@ -10,7 +10,7 @@ limits (>1GB) are also necessary.
 import argparse
 import os
 
-from helper import DockerWorker, SockWorker, prepare_open_lambda, setup_config
+from helper import DockerWorker, SockWorker, prepare_open_lambda, setup_config, run
 from helper import TestConfContext, assert_eq
 
 from helper.test import set_test_filter, start_tests, check_test_results, set_worker_type, test
@@ -22,6 +22,7 @@ OL_DIR = None
 
 @test
 def pandas_test():
+    run(['./ol', 'admin', 'install', f'-p={OL_DIR}', 'examples/pandas-tests'])
     open_lambda = OpenLambda()
     result = open_lambda.run("pandas-tests", None)
     assert_eq(result, True)
